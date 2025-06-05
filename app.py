@@ -84,11 +84,7 @@ if user_input:
     if any(word in text for word in ["sad", "unhappy", "down", "depressed", "lonely"]):
         reply = "I'm really sorry you're feeling sad. Remember, it's okay to have tough days. I'm here for you. 💖"
     elif any(word in text for word in ["happy", "joy", "glad", "excited", "cheerful", "great"]):
-        reply = "That's wonderful to hear! What made you feel so happy today?       
-        
-        /) /)
-       ( • ༝•)
-     c /づ  づ"
+        reply = "That's wonderful to hear! What made you feel so happy today?"
 
     elif any(word in text for word in ["stress", "anxious", "worried", "nervous", "tense"]):
         reply = "Stress and anxiety can be tough. Try to take some deep breaths with me. You're not alone. 🌸"
