@@ -81,9 +81,9 @@ if user_input:
     
     text = user_input.lower()
     # More emotions & replies
-    if any(word in text for word in ["sad", "unhappy", "down", "depressed", "lonely"]):
+    if any(word in text for word in ["sad", "unhappy", "down", "depressed", "lonely","gloomy", "sorrow", "hate", "low"]):
         reply = "I'm really sorry you're feeling sad. Remember, it's okay to have tough days. I'm here for you. 💖"
-    elif any(word in text for word in ["happy", "joy", "glad", "excited", "cheerful", "great"]):
+    elif any(word in text for word in ["happy", "joy", "glad", "excited", "cheerful", "great", "blissful", "ecstatic"]):
         reply = "That's wonderful to hear! What made you feel so happy today?"
 
     elif any(word in text for word in ["stress", "anxious", "worried", "nervous", "tense"]):
