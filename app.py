@@ -5,6 +5,10 @@ import streamlit as st
 st.markdown("""
 <style>
 body {
+
+    background-color: #eec0c8;
+    opacity: 0.8;
+
     background-color: #ffe4e6;  /* soft light pink */
     font-family: 'Comic Sans MS', cursive, sans-serif;
     color: #c94f7c;  /* dusty pink/mauve text */
