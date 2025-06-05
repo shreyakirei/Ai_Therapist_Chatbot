@@ -1,9 +1,80 @@
 import streamlit as st
 
-st.title("AI Therapist Chatbot")
+# Custom CSS for background and chat bubbles with rabbits
+st.markdown("""
+<style>
+/* Light pink background */
+body {
+    background-color: #ffe4e6;
+}
 
-st.write("Hi! I’m here to listen. How are you feeling today?")
+/* Container for the chat */
+.chat-container {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: 'Arial', sans-serif;
+}
 
+/* Chat bubbles */
+.chatbox {
+    padding: 12px 18px;
+    border-radius: 15px;
+    margin: 8px 0;
+    max-width: 70%;
+    font-size: 16px;
+}
+.user {
+    background-color: #f8bbd0;
+    margin-left: auto;
+}
+.bot {
+    background-color: #fce4ec;
+    margin-right: auto;
+}
+
+/* Title style */
+.title {
+    text-align: center;
+    color: #c2185b;
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+/* Rabbit images in corners */
+.rabbit-top-left {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    width: 80px;
+    opacity: 0.7;
+    z-index: 9999;
+}
+.rabbit-bottom-right {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 80px;
+    opacity: 0.7;
+    z-index: 9999;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Add rabbit images (you can replace these URLs with any cute rabbit image you prefer)
+st.markdown("""
+<img class="rabbit-top-left" src="https://i.postimg.cc/1XJwXpNC/cute-rabbit1.png" alt="rabbit top left">
+<img class="rabbit-bottom-right" src="https://i.postimg.cc/4dCHbRsX/cute-rabbit2.png" alt="rabbit bottom right">
+""", unsafe_allow_html=True)
+
+# Title
+st.markdown('<h1 class="title">🐇 AI Therapist Chatbot 🐇</h1>', unsafe_allow_html=True)
+st.markdown("<p style='text-align:center;'>I'm here to listen and support you.</p>", unsafe_allow_html=True)
+
+# Chat logic and UI
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -11,59 +82,22 @@ user_input = st.text_input("You:", key="input")
 
 if user_input:
     st.session_state.messages.append({"role": "user", "text": user_input})
-    text = user_input.lower()
-
-    if any(word in text for word in ["sad", "unhappy", "depressed", "down", "miserable", "heartbroken"]):
-        reply = (
-            "I'm really sorry to hear that you're feeling this way. "
-            "It's okay to feel sad sometimes. Remember, you're not alone — "
-            "I'm here to listen whenever you need."
-        )
-    elif any(word in text for word in ["happy", "joy", "excited", "glad", "cheerful", "delighted", "content"]):
-        reply = (
-            "That's wonderful! Happiness is such a beautiful feeling. "
-            "What’s something that made you feel this way today?"
-        )
-    elif any(word in text for word in ["stress", "anxious", "nervous", "worried", "overwhelmed", "tense"]):
-        reply = (
-            "Stress and anxiety can be really tough to manage. "
-            "Have you tried any relaxation techniques like deep breathing or meditation? "
-            "Taking small breaks can help too."
-        )
-    elif any(word in text for word in ["angry", "frustrated", "mad", "irritated", "annoyed", "upset"]):
-        reply = (
-            "Feeling angry or frustrated is completely natural. "
-            "Would you like to talk more about what’s causing these feelings?"
-        )
-    elif any(word in text for word in ["lonely", "alone", "isolated", "left out", "abandoned"]):
-        reply = (
-            "Loneliness can be really hard. Remember, even if it feels like it, you are not alone. "
-            "Talking about your feelings can sometimes help lighten the load."
-        )
-    elif any(word in text for word in ["tired", "exhausted", "sleepy", "drained", "fatigued"]):
-        reply = (
-            "It sounds like you’re feeling really tired. Rest and self-care are so important. "
-            "Maybe try to take some time just for yourself."
-        )
-    elif any(word in text for word in ["confused", "lost", "uncertain", "doubtful", "unsure"]):
-        reply = (
-            "Feeling confused or unsure is okay — life can be complicated. "
-            "Would you like to share more about what's causing this uncertainty?"
-        )
-    elif any(word in text for word in ["hopeful", "optimistic", "positive", "encouraged"]):
-        reply = (
-            "I’m glad to hear you're feeling hopeful! Holding onto positivity can really help in tough times."
-        )
+    # Bot reply (you can expand this)
+    if "sad" in user_input.lower():
+        reply = "I'm sorry you're feeling sad. Remember, it's okay to have tough days."
+    elif "happy" in user_input.lower():
+        reply = "That's wonderful! What made you happy today?"
+    elif "stress" in user_input.lower():
+        reply = "Stress can be tough. Take a deep breath with me."
     else:
-        reply = (
-            "Thank you for sharing your feelings. "
-            "Sometimes just talking about things helps. Would you like to continue?"
-        )
-
+        reply = "Thanks for sharing. Tell me more about how you're feeling."
     st.session_state.messages.append({"role": "bot", "text": reply})
 
+st.markdown('<div class="chat-container">', unsafe_allow_html=True)
 for msg in st.session_state.messages:
     if msg["role"] == "user":
-        st.markdown(f"**You:** {msg['text']}")
+        st.markdown(f'<div class="chatbox user">{msg["text"]}</div>', unsafe_allow_html=True)
     else:
-        st.markdown(f"**Therapist:** {msg['text']}")
+        st.markdown(f'<div class="chatbox bot">{msg["text"]}</div>', unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
+
