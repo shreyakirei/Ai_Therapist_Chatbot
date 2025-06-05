@@ -1,73 +1,87 @@
 import streamlit as st
 
-# CSS styling same as before (you can reuse from previous)
-
 st.markdown("""
 <style>
 body {
-
-    background-color: #eec0c8;
-    opacity: 0.8;
-
-    background-color: #ffe4e6;  /* soft light pink */
+    background: linear-gradient(135deg, #ffe4e6, #f9d7db);
     font-family: 'Comic Sans MS', cursive, sans-serif;
-    color: #c94f7c;  /* dusty pink/mauve text */
-    padding: 30px;
+    color: #8b3a4a;  /* warm mauve */
+    padding: 40px 20px;
+    min-height: 100vh;
+    margin: 0;
 }
 .title {
-    font-size: 3.5rem;
+    font-size: 3.8rem;
     text-align: center;
-    font-weight: 700;
-    color: #d85c9f;
-    text-shadow: 1px 1px 3px #f8bbd0;
-    margin-bottom: 10px;
+    font-weight: 800;
+    color: #d26b7f;
+    text-shadow: 2px 2px 6px #f7a1b5cc;
+    margin-bottom: 15px;
+    user-select: none;
 }
 .subtitle {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-style: italic;
-    color: #e0a3b8;
-    margin-bottom: 30px;
+    color: #c37b8e;
+    margin-bottom: 40px;
+    user-select: none;
 }
 .chat-container {
     max-width: 700px;
     margin: auto;
-    background: #fff0f6;
-    border-radius: 20px;
-    padding: 25px 40px;
-    box-shadow: 0 6px 15px rgba(220, 158, 188, 0.3);
+    background: #fff0f2;
+    border-radius: 25px;
+    padding: 30px 45px;
+    box-shadow:
+        0 8px 20px rgba(210, 105, 135, 0.25),
+        inset 0 0 15px #f9c6d1;
 }
 .user-msg {
-    background-color: #f2a3b7;  /* darker soft pink */
-    padding: 12px 18px;
-    border-radius: 20px 20px 0 20px;
-    margin: 10px 0;
+    background-color: #f9a8b8;  /* cozy pink */
+    padding: 14px 22px;
+    border-radius: 25px 25px 0 25px;
+    margin: 12px 0;
     max-width: 70%;
     margin-left: auto;
-    font-size: 1.1rem;
-    color: #3a1e2b;
+    font-size: 1.15rem;
+    color: #4c2a38;
+    box-shadow: 1px 2px 7px #e89ca7aa;
+    word-wrap: break-word;
+    line-height: 1.4;
 }
 .bot-msg {
-    background-color: #e97fa5;  /* a bit darker pink */
-    padding: 12px 18px;
-    border-radius: 20px 20px 20px 0;
-    margin: 10px 0;
+    background-color: #f2c4ce;  /* gentle pastel pink */
+    padding: 14px 22px;
+    border-radius: 25px 25px 25px 0;
+    margin: 12px 0;
     max-width: 70%;
     margin-right: auto;
-    font-size: 1.1rem;
-    color: #3a1e2b;
+    font-size: 1.15rem;
+    color: #4c2a38;
+    box-shadow: 1px 2px 7px #dba3adcc;
+    word-wrap: break-word;
+    line-height: 1.4;
 }
 input[type="text"] {
-    padding: 10px;
-    border-radius: 15px;
-    border: 2px solid #d85c9f;
+    padding: 14px 18px;
+    border-radius: 20px;
+    border: 3px solid #d36a7a;
     width: 100%;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-family: 'Comic Sans MS', cursive, sans-serif;
+    outline: none;
+    box-shadow: 0 0 8px #f3a7bc66;
+    transition: box-shadow 0.3s ease;
+}
+input[type="text"]:focus {
+    box-shadow: 0 0 14px #e96e8baa;
+    border-color: #e96e8b;
 }
 ::placeholder {
-    color: #e0a3b8;
+    color: #d29ba8;
     font-style: italic;
+    user-select: none;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -84,7 +98,7 @@ if user_input:
     st.session_state.messages.append({"role": "user", "text": user_input})
     
     text = user_input.lower()
-    # More emotions & replies
+    # Emotions handling (unchanged)
     if any(word in text for word in ["sad", "unhappy", "down", "depressed", "lonely","gloomy", "sorrow", "hate", "low"]):
         reply = "I'm really sorry you're feeling sad. Remember, it's okay to have tough days. I'm here for you. 💖"
     elif any(word in text for word in ["happy", "joy", "glad", "excited", "cheerful", "great", "blissful", "ecstatic"]):
