@@ -68,7 +68,7 @@ input[type="text"] {
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<h1 class="title">🐰 Kawaii Ai Therapist🐰</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="title">♡ Kawaii Ai Therapist ♡</h1>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Soft ears, soft words — I’m here to listen.</p>', unsafe_allow_html=True)
 
 if "messages" not in st.session_state:
@@ -84,7 +84,12 @@ if user_input:
     if any(word in text for word in ["sad", "unhappy", "down", "depressed", "lonely"]):
         reply = "I'm really sorry you're feeling sad. Remember, it's okay to have tough days. I'm here for you. 💖"
     elif any(word in text for word in ["happy", "joy", "glad", "excited", "cheerful", "great"]):
-        reply = "That's wonderful to hear! What made you feel so happy today? 😊"
+        reply = "That's wonderful to hear! What made you feel so happy today?       
+        
+        /) /)
+       ( • ༝•)
+     c /づ  づ"
+
     elif any(word in text for word in ["stress", "anxious", "worried", "nervous", "tense"]):
         reply = "Stress and anxiety can be tough. Try to take some deep breaths with me. You're not alone. 🌸"
     elif any(word in text for word in ["angry", "frustrated", "annoyed", "mad"]):
