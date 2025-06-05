@@ -1,103 +1,111 @@
 import streamlit as st
 
-# Custom CSS for background and chat bubbles with rabbits
+# CSS styling same as before (you can reuse from previous)
+
 st.markdown("""
 <style>
-/* Light pink background */
 body {
-    background-color: #ffe4e6;
+    background-color: #ffe4e6;  /* soft light pink */
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: #c94f7c;  /* dusty pink/mauve text */
+    padding: 30px;
 }
-
-/* Container for the chat */
+.title {
+    font-size: 3.5rem;
+    text-align: center;
+    font-weight: 700;
+    color: #d85c9f;
+    text-shadow: 1px 1px 3px #f8bbd0;
+    margin-bottom: 10px;
+}
+.subtitle {
+    text-align: center;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #e0a3b8;
+    margin-bottom: 30px;
+}
 .chat-container {
     max-width: 700px;
-    margin: 30px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    font-family: 'Arial', sans-serif;
+    margin: auto;
+    background: #fff0f6;
+    border-radius: 20px;
+    padding: 25px 40px;
+    box-shadow: 0 6px 15px rgba(220, 158, 188, 0.3);
 }
-
-/* Chat bubbles */
-.chatbox {
+.user-msg {
+    background-color: #f9d6e4;
     padding: 12px 18px;
-    border-radius: 15px;
-    margin: 8px 0;
+    border-radius: 20px 20px 0 20px;
+    margin: 10px 0;
     max-width: 70%;
-    font-size: 16px;
-}
-.user {
-    background-color: #f8bbd0;
     margin-left: auto;
+    font-size: 1.1rem;
 }
-.bot {
-    background-color: #fce4ec;
+.bot-msg {
+    background-color: #f7c6d9;
+    padding: 12px 18px;
+    border-radius: 20px 20px 20px 0;
+    margin: 10px 0;
+    max-width: 70%;
     margin-right: auto;
+    font-size: 1.1rem;
 }
-
-/* Title style */
-.title {
-    text-align: center;
-    color: #c2185b;
-    font-weight: bold;
-    font-size: 2.5rem;
+input[type="text"] {
+    padding: 10px;
+    border-radius: 15px;
+    border: 2px solid #d85c9f;
+    width: 100%;
+    font-size: 1.1rem;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
 }
-
-/* Rabbit images in corners */
-.rabbit-top-left {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    width: 80px;
-    opacity: 0.7;
-    z-index: 9999;
-}
-.rabbit-bottom-right {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    width: 80px;
-    opacity: 0.7;
-    z-index: 9999;
+::placeholder {
+    color: #e0a3b8;
+    font-style: italic;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# Add rabbit images (you can replace these URLs with any cute rabbit image you prefer)
-st.markdown("""
-<img class="rabbit-top-left" src="https://i.postimg.cc/1XJwXpNC/cute-rabbit1.png" alt="rabbit top left">
-<img class="rabbit-bottom-right" src="https://i.postimg.cc/4dCHbRsX/cute-rabbit2.png" alt="rabbit bottom right">
-""", unsafe_allow_html=True)
+st.markdown('<h1 class="title">🐰 AI Therapist Chatbot 🐰</h1>', unsafe_allow_html=True)
+st.markdown('<p class="subtitle">Soft ears, soft words — I’m here to listen.</p>', unsafe_allow_html=True)
 
-# Title
-st.markdown('<h1 class="title">🐇 AI Therapist Chatbot 🐇</h1>', unsafe_allow_html=True)
-st.markdown("<p style='text-align:center;'>I'm here to listen and support you.</p>", unsafe_allow_html=True)
-
-# Chat logic and UI
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-user_input = st.text_input("You:", key="input")
+user_input = st.text_input("You:", placeholder="Tell me how you’re feeling...", key="input")
 
 if user_input:
     st.session_state.messages.append({"role": "user", "text": user_input})
-    # Bot reply (you can expand this)
-    if "sad" in user_input.lower():
-        reply = "I'm sorry you're feeling sad. Remember, it's okay to have tough days."
-    elif "happy" in user_input.lower():
-        reply = "That's wonderful! What made you happy today?"
-    elif "stress" in user_input.lower():
-        reply = "Stress can be tough. Take a deep breath with me."
+    
+    text = user_input.lower()
+    # More emotions & replies
+    if any(word in text for word in ["sad", "unhappy", "down", "depressed", "lonely"]):
+        reply = "I'm really sorry you're feeling sad. Remember, it's okay to have tough days. I'm here for you. 💖"
+    elif any(word in text for word in ["happy", "joy", "glad", "excited", "cheerful", "great"]):
+        reply = "That's wonderful to hear! What made you feel so happy today? 😊"
+    elif any(word in text for word in ["stress", "anxious", "worried", "nervous", "tense"]):
+        reply = "Stress and anxiety can be tough. Try to take some deep breaths with me. You're not alone. 🌸"
+    elif any(word in text for word in ["angry", "frustrated", "annoyed", "mad"]):
+        reply = "It's okay to feel angry sometimes. Want to talk about what’s bothering you? 🐇"
+    elif any(word in text for word in ["tired", "exhausted", "sleepy", "fatigued"]):
+        reply = "You sound really tired. Make sure to rest and take care of yourself. Your wellbeing matters. 🌙"
+    elif any(word in text for word in ["confused", "lost", "uncertain", "unsure"]):
+        reply = "Feeling confused is normal. Take your time — I’m here whenever you want to chat. 💕"
+    elif any(word in text for word in ["grateful", "thankful", "blessed"]):
+        reply = "Gratitude is such a beautiful feeling. What are you thankful for today? 🌷"
+    elif any(word in text for word in ["hopeful", "optimistic", "positive"]):
+        reply = "I love your positive vibe! Keep holding onto that hope. 🌞"
+    elif any(word in text for word in ["lonely", "alone"]):
+        reply = "You’re not alone, even if it feels that way. I’m here to listen. 🐰"
     else:
-        reply = "Thanks for sharing. Tell me more about how you're feeling."
+        reply = "Thanks for sharing. Tell me more about how you're feeling. 🥰"
+
     st.session_state.messages.append({"role": "bot", "text": reply})
 
 st.markdown('<div class="chat-container">', unsafe_allow_html=True)
 for msg in st.session_state.messages:
     if msg["role"] == "user":
-        st.markdown(f'<div class="chatbox user">{msg["text"]}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="user-msg">{msg["text"]}</div>', unsafe_allow_html=True)
     else:
-        st.markdown(f'<div class="chatbox bot">{msg["text"]}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="bot-msg">{msg["text"]}</div>', unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
-
