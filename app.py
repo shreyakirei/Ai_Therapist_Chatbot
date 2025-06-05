@@ -68,7 +68,7 @@ input[type="text"] {
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<h1 class="title">🐰 AI Therapist Chatbot 🐰</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="title">🐰 Kawaii Ai Therapist🐰</h1>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Soft ears, soft words — I’m here to listen.</p>', unsafe_allow_html=True)
 
 if "messages" not in st.session_state:
