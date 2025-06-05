@@ -34,22 +34,24 @@ body {
     box-shadow: 0 6px 15px rgba(220, 158, 188, 0.3);
 }
 .user-msg {
-    background-color: #f9d6e4;
+    background-color: #f2a3b7;  /* darker soft pink */
     padding: 12px 18px;
     border-radius: 20px 20px 0 20px;
     margin: 10px 0;
     max-width: 70%;
     margin-left: auto;
     font-size: 1.1rem;
+    color: #3a1e2b;
 }
 .bot-msg {
-    background-color: #f7c6d9;
+    background-color: #e97fa5;  /* a bit darker pink */
     padding: 12px 18px;
     border-radius: 20px 20px 20px 0;
     margin: 10px 0;
     max-width: 70%;
     margin-right: auto;
     font-size: 1.1rem;
+    color: #3a1e2b;
 }
 input[type="text"] {
     padding: 10px;
