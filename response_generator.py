@@ -7,5 +7,6 @@ def generate_response(emotion):
         "love": "Love is beautiful. Who are you thinking of?",
         "surprise": "Oh wow! That must’ve been unexpected. Tell me more.",
         "neutral": "I'm listening. How's your day going?"
+        "tired": "AWW i totally understand you probably should get some rest."
     }
     return responses.get(emotion.lower(), "I'm here for you. Feel free to share more.")
